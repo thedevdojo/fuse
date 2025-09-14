@@ -1,6 +1,6 @@
 <img src="./logo.svg" alt="Fuse Logo" width="184" height="73">
 
-# Fuse - The Safety Switch for Livewire
+# The Safety Switch for Livewire
 
 Fuse is a static analysis checker for your [Laravel Livewire](https://livewire.laravel.com/) apps. Think of it like an electrician testing your code’s wiring before you go live. ⚡
 
