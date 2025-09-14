@@ -1,4 +1,4 @@
-<img src="./logo.svg" alt="Fuse Logo" width="184" height="73">
+<img src="./logo.svg" alt="Fuse Logo" width="auto" height="50">
 
 # The Safety Switch for Livewire
 
