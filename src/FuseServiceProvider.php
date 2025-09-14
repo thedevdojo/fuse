@@ -40,7 +40,9 @@ class FuseServiceProvider extends ServiceProvider
             ], 'lang');*/
 
             // Registering package commands.
-            // $this->commands([]);
+            $this->commands([
+                \Devdojo\Fuse\Commands\FuseCheckCommand::class,
+            ]);
         }
     }
 
