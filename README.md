@@ -23,6 +23,8 @@ Livewire makes it simple to build dynamic interfaces with Laravel, but it’s al
 composer require devdojo/fuse --dev
 ```
 
+---
+
 ## Usage
 
 Run Fuse against your project:
