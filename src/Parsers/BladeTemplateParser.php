@@ -42,12 +42,22 @@ class BladeTemplateParser
             '/wire:model\s*=\s*["\']([^"\']+)["\']/' => 'wire:model', 
             '/wire:change\s*=\s*["\']([^"\']+)["\']/' => 'wire:change',
             '/wire:keydown\s*=\s*["\']([^"\']+)["\']/' => 'wire:keydown',
+            '/wire:keyup\s*=\s*["\']([^"\']+)["\']/' => 'wire:keyup',
             '/wire:submit\s*=\s*["\']([^"\']+)["\']/' => 'wire:submit',
             '/wire:input\s*=\s*["\']([^"\']+)["\']/' => 'wire:input',
             '/wire:blur\s*=\s*["\']([^"\']+)["\']/' => 'wire:blur',
             '/wire:focus\s*=\s*["\']([^"\']+)["\']/' => 'wire:focus',
             '/wire:mouseenter\s*=\s*["\']([^"\']+)["\']/' => 'wire:mouseenter',
             '/wire:mouseleave\s*=\s*["\']([^"\']+)["\']/' => 'wire:mouseleave',
+            '/wire:mousedown\s*=\s*["\']([^"\']+)["\']/' => 'wire:mousedown',
+            '/wire:mouseup\s*=\s*["\']([^"\']+)["\']/' => 'wire:mouseup',
+            '/wire:contextmenu\s*=\s*["\']([^"\']+)["\']/' => 'wire:contextmenu',
+            '/wire:touchstart\s*=\s*["\']([^"\']+)["\']/' => 'wire:touchstart',
+            '/wire:touchend\s*=\s*["\']([^"\']+)["\']/' => 'wire:touchend',
+            '/wire:touchmove\s*=\s*["\']([^"\']+)["\']/' => 'wire:touchmove',
+            '/wire:scroll\s*=\s*["\']([^"\']+)["\']/' => 'wire:scroll',
+            '/wire:resize\s*=\s*["\']([^"\']+)["\']/' => 'wire:resize',
+            '/wire:load\s*=\s*["\']([^"\']+)["\']/' => 'wire:load',
         ];
 
         foreach ($patterns as $pattern => $directiveType) {

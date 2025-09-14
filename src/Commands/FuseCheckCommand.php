@@ -15,14 +15,15 @@ class FuseCheckCommand extends Command
     /**
      * The console command description.
      */
-    protected $description = 'Run Fuse static analysis checks on your Livewire components';
+    protected $description = 'Validate $wire bindings in Livewire components and Blade templates';
 
     /**
      * Execute the console command.
      */
     public function handle()
     {
-        $this->info('🔍 Running Fuse static analysis checks...');
+        $this->info('🔍 Running $wire binding validation...');
+        $this->line('Checking all Livewire components and their associated Blade templates...');
         $this->line('');
 
         $checker = new WireBindingChecker();
@@ -30,7 +31,8 @@ class FuseCheckCommand extends Command
 
         $this->displayResults($results);
 
-        return 0;
+        // Return appropriate exit code
+        return empty($results['errors']) ? 0 : 1;
     }
 
     /**
@@ -40,6 +42,8 @@ class FuseCheckCommand extends Command
     {
         if (empty($results['errors'])) {
             $this->info('✅ All $wire binding checks passed!');
+            $this->line('');
+            $this->line('No issues found with your Livewire component bindings.');
             return;
         }
 
@@ -48,8 +52,10 @@ class FuseCheckCommand extends Command
 
         foreach ($results['errors'] as $error) {
             $this->line("<fg=red>• {$error['type']}: {$error['message']}</>");
-            $this->line("  File: {$error['file']}:{$error['line']}");
+            $this->line("  <fg=yellow>File: {$error['file']}:{$error['line']}</>");
             $this->line('');
         }
+        
+        $this->line('<fg=cyan>Fix these issues to ensure your Livewire components work correctly in production.</>');
     }
 }

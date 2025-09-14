@@ -107,7 +107,7 @@ class WireBindingChecker
         $line = $reference['line'];
 
         // For wire:submit and wire:click, these are method calls
-        if (in_array($type, ['wire:submit', 'wire:click'])) {
+        if (in_array($type, ['wire:submit', 'wire:click', 'wire:keydown', 'wire:keyup', 'wire:mousedown', 'wire:mouseup', 'wire:contextmenu', 'wire:touchstart', 'wire:touchend', 'wire:touchmove', 'wire:scroll', 'wire:resize', 'wire:load'])) {
             // Remove parentheses if present and treat as method call
             $methodName = str_replace(['(', ')'], '', $target);
             if (!in_array($methodName, $componentData['publicMethods'])) {
@@ -120,11 +120,15 @@ class WireBindingChecker
             }
         }
         // For wire:model and similar, these are property bindings
-        elseif (in_array($type, ['wire:model', 'wire:change', 'wire:input', 'wire:blur', 'wire:focus'])) {
-            if (!in_array($target, $componentData['publicProperties'])) {
+        elseif (in_array($type, ['wire:model', 'wire:change', 'wire:input', 'wire:blur', 'wire:focus', 'wire:mouseenter', 'wire:mouseleave'])) {
+            // Handle nested properties like user.name
+            $propertyPath = explode('.', $target);
+            $rootProperty = $propertyPath[0];
+            
+            if (!in_array($rootProperty, $componentData['publicProperties'])) {
                 return [
                     'type' => 'Missing Property',
-                    'message' => "Property '{$target}' referenced in {$type} does not exist or is not public",
+                    'message' => "Property '{$rootProperty}' referenced in {$type} does not exist or is not public",
                     'file' => $bladeFile,
                     'line' => $line,
                 ];
@@ -144,11 +148,14 @@ class WireBindingChecker
                     ];
                 }
             } else {
-                // It's a property reference
-                if (!in_array($target, $componentData['publicProperties'])) {
+                // It's a property reference - handle nested properties
+                $propertyPath = explode('.', $target);
+                $rootProperty = $propertyPath[0];
+                
+                if (!in_array($rootProperty, $componentData['publicProperties'])) {
                     return [
                         'type' => 'Missing Property',
-                        'message' => "Property '{$target}' referenced in {$type} does not exist or is not public",
+                        'message' => "Property '{$rootProperty}' referenced in {$type} does not exist or is not public",
                         'file' => $bladeFile,
                         'line' => $line,
                     ];
