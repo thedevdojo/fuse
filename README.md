@@ -5,7 +5,7 @@ Think of it like an electrician testing your code’s wiring before you go live.
 
 ---
 
-## 🚀 What is Fuse?
+## What is Fuse?
 
 Livewire makes it simple to build dynamic interfaces with Laravel, but it’s also easy to introduce subtle errors:
 - A `wire:model` bound to a property that doesn’t exist.
@@ -14,6 +14,26 @@ Livewire makes it simple to build dynamic interfaces with Laravel, but it’s al
 - Alpine `$wire` calls to non-existent methods.
 
 **Fuse catches these problems before they ever hit production.**
+
+---
+
+## Installation
+
+```bash
+composer require devdojo/fuse --dev
+```
+
+## Usage
+
+Run Fuse against your project:
+
+```bash
+php artisan fuse:check
+```
+
+This will scan your Livewire components and Blade templates, reporting any wiring issues it finds.
+
+---
 
 ## Checks Performed by Fuse
 
@@ -51,21 +71,7 @@ Verifies that computed properties (getFooProperty) are referenced correctly as $
 - Confirms lifecycle hooks like mount, hydrate, or updatingFoo exist and have correct signatures.
 - Warns on misspellings (e.g. updatedFoo vs updatingFoo) before they cause subtle bugs.
 
-## Installation
-
-```bash
-composer require devdojo/fuse --dev
-```
-
-## Usage
-
-Run Fuse against your project:
-
-```bash
-php artisan fuse:check
-```
-
-This will scan your Livewire components and Blade templates, reporting any wiring issues it finds.
+---
 
 # Why Fuse?
 
@@ -73,9 +79,13 @@ This will scan your Livewire components and Blade templates, reporting any wirin
 - Improve confidence – every $wire, dispatch, and listener is validated.
 - Save debugging time – no more “why isn’t this event firing?” moments.
 
+---
+
 ## Contributing
 
 Pull requests are welcome! If you’d like to add new checks or improve existing ones, please open an issue or submit a PR.
+
+---
 
 ## License
 
