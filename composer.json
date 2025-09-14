@@ -1,0 +1,54 @@
+{
+    "name": "devdojo/fuse",
+    "description": "The Safety Switch for Livewire",
+    "keywords": [
+        "devdojo",
+        "fuse"
+    ],
+    "homepage": "https://github.com/devdojo/fuse",
+    "license": "MIT",
+    "type": "library",
+    "authors": [
+        {
+            "name": "Tony Lea",
+            "email": "tony@devdojo.com",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "php": "^7.4|^8.0|^8.1|^8.2|^8.3|^8.4",
+        "illuminate/support": "^11.0|^12.0"
+    },
+    "require-dev": {
+        "orchestra/testbench": "^6.0",
+        "phpunit/phpunit": "^9.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Devdojo\\Fuse\\": "src"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Devdojo\\Fuse\\Tests\\": "tests"
+        }
+    },
+    "scripts": {
+        "test": "vendor/bin/phpunit",
+        "test-coverage": "vendor/bin/phpunit --coverage-html coverage"
+
+    },
+    "config": {
+        "sort-packages": true
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Devdojo\\Fuse\\FuseServiceProvider"
+            ],
+            "aliases": {
+                "Fuse": "Devdojo\\Fuse\\FuseFacade"
+            }
+        }
+    }
+}
